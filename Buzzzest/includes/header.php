@@ -31,8 +31,10 @@ $(document).ready(function() {
 
 <body>
  
-<div class="container">
-  <div class="header">Buzzzest
+
+  <div class="header" >
+  <div class="content_header">
+  Buzzzest
   <input type="text" value="Search" />
 	
   &nbsp;&nbsp;<a href="../home/home.php">Home</a>&nbsp;&nbsp; <a href="../profile/profile.php" >Profile</a>&nbsp;&nbsp;
@@ -53,4 +55,5 @@ $(document).ready(function() {
 		<a  class="fancybox fancybox.ajax" href="../home/friend_request.php?uid=<?php echo $uid_val;?>" ><strong><?php echo $num_select_request;?></strong> Friend Request(s) Pending </a>    
    <?php } ?>
         <div style="float:right;"><?php echo $_SESSION['UNAME']; ?></div>
-    <!-- end .header --></div>
+    <!-- end .header --></div></div>
+    <div class="container" >

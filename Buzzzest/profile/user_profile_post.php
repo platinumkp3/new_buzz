@@ -246,7 +246,7 @@ function fnupdatecommentcom(usid,comid,txtid,action,id,psid)
 	}
 }
 
-$(window).scroll(function () {
+/*$(window).scroll(function () {
 	 var page = 1;
 	$('#more').hide();
 	$('#no-more').hide();
@@ -269,7 +269,7 @@ $(window).scroll(function () {
 		};
 	
 		
-		var actual_count = "<?php echo $actual_row_count; ?>";
+		var actual_count = "<?php //echo $actual_row_count; ?>";
 		
 		if((page-1)* 3 > actual_count ){
 			
@@ -291,14 +291,14 @@ $(window).scroll(function () {
  }
 
 
-});
+});*/
 
 
       </script>
 
 <?php
 
-echo $select="select POSTID,POST,UID,POSTDATE,POSTTIME from post where UID='".$uid."' and PSTATUS=1 order by POSTID DESC limit 3";
+$select="select POSTID,POST,UID,POSTDATE,POSTTIME from post where UID='".$uid."' and PSTATUS=1 order by POSTID DESC limit 3";
 //code for home page
 /*$select="select POSTID,POST,UID from post where UID in(select FRNID from friends 
 		where UID='".$uid."' ) or UID='".$uid."' and PSTATUS=1 order by POSTID desc";*/

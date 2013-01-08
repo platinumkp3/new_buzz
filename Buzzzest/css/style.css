@@ -1,7 +1,8 @@
 body {	
-	font:100%/1.4 "Times New Roman", Times, serif;	
+	font:100%/1.4 "MS Serif", "New York", serif;	
 	/*background-color: #4E5869;
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;*/
+	font-style:italic;
 	margin: 0;
 	padding: 0;
 	color: #000;
@@ -36,8 +37,7 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 
 /* ~~ this container surrounds all other divs giving them their percentage-based width ~~ */
 .container {
-	width: 90%;
-	max-width: 90%;
+	width: 100%;
 	/*max-width: 1260px; a max-width may be desirable to keep this layout from getting too wide on a large monitor. This keeps line length more readable. IE6 does not respect this declaration. */
 	min-width: 780px;/* a min-width may be desirable to keep this layout from getting too narrow. This keeps line length more readable in the side columns. IE6 does not respect this declaration. */
 	background-color: #FFF;
@@ -49,6 +49,22 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 .header {
 	/*background-color: #6F7D94;*/
 	border: 1px solid #CCC;
+	background-color:#045C8E;
+	min-height:50px;
+	width:100%;
+	
+}
+
+.content_header 
+{
+	height:100%;
+	color:#FFF;
+	margin:2% 1% 0 1%;
+}
+
+.content_header a
+{
+	color:#FFF;
 }
 
 /* ~~ These are the columns for the layout. ~~ 

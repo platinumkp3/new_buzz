@@ -23,42 +23,51 @@ $(document).ready(function() {
    
 function fnchangediv(stringval) 
 {
-	$('#photos').hide("");	
-   $('#blogs').hide("");	
-   $('#info').hide("");	
-   $('#qanda').hide("");	
-   $('#content_post').hide("");
-   $("#content_post").css("display","none");
+   $('#photos').hide();	
+   $('#blogs').hide();	
+   $('#info').hide();	
+   $('#qanda').hide();	
+  // $('#content_post').hide();
+   //$("#content_post").css("display","none");
    $("#photos").css("display","none");
    $("#blogs").css("display","none");
    $("#info").css("display","none"); 
-   $("#qanda").css("display","none");      
+   $("#qanda").css("display","none"); 
+   $('#content_userpost').css("display","none"); 
+        
 	
 	if (stringval == "info")
-	{
+	{   
+  	   $('#content_post_form').css("display","none");
 	   $('#infoedit').css("display","block");
 	   $('#infoeditdis').css("display","none");
 	   $("#infoedit").load("view_profile.php");
+	   
 	}
 	
 	if (stringval == "photos")
 	{
+  		$('#content_post_form').css("display","none");
 		$('#gallery').load('gallery.php');
 	}
 	
 	if (stringval == "content_post")
 	{
+  		$('#content_post_form').css("display","block");
+		$('#content_userpost').css("display","block");
 		$('#content_userpost').load('user_profile_post.php');
 	}
 	
 	if (stringval == "blogs")
-	{			   
-  		$('#profile_blog').css("display","block");	
+	{
+   		$('#content_post_form').css("display","none");
+		$('#profile_blog').css("display","block");	
 		$('#profile_blog').load('./blog/profile_blog.php');
 	}
    	
 	if (stringval == "qanda")
-	{			   
+	{	
+   		$('#content_post_form').css("display","none");
   		$('#qanda').css("display","block");	
 		$('#qanda').load('./qanda/profile_qanda.php');
 	}
