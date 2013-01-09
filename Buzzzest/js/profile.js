@@ -23,6 +23,7 @@ $(document).ready(function() {
    
 function fnchangediv(stringval) 
 {
+	window.scrollTo(0,0);
    $('#photos').hide();	
    $('#blogs').hide();	
    $('#info').hide();	

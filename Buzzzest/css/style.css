@@ -4,7 +4,6 @@ body {
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;*/
 	font-style:italic;
 	margin: 0;
-	padding: 0;
 	color: #000;
 }
 
@@ -37,11 +36,13 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 
 /* ~~ this container surrounds all other divs giving them their percentage-based width ~~ */
 .container {
-	width: 100%;
+	padding: 1% 1% 0 1%;
+	
+	width: 98%;
 	/*max-width: 1260px; a max-width may be desirable to keep this layout from getting too wide on a large monitor. This keeps line length more readable. IE6 does not respect this declaration. */
-	min-width: 780px;/* a min-width may be desirable to keep this layout from getting too narrow. This keeps line length more readable in the side columns. IE6 does not respect this declaration. */
+	/*min-width: 600px; a min-width may be desirable to keep this layout from getting too narrow. This keeps line length more readable in the side columns. IE6 does not respect this declaration. */
 	background-color: #FFF;
-	border:1px solid #999;
+	/*border:1px solid #999;*/
 	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout. It is not needed if you set the .container's width to 100%. */
 }
 
@@ -50,21 +51,53 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 	/*background-color: #6F7D94;*/
 	border: 1px solid #CCC;
 	background-color:#045C8E;
-	min-height:50px;
 	width:100%;
+	min-height:50px;
 	
 }
 
 .content_header 
 {
 	height:100%;
+	width:100%;
 	color:#FFF;
-	margin:2% 1% 0 1%;
+	margin:2% 1% 0 0;
 }
 
 .content_header a
 {
 	color:#FFF;
+}
+
+#sign_in
+{
+	display:block;
+	float:right;
+	border-left:1px solid #000;
+	border-right:1px solid #000;
+	border-bottom:1px solid #000;
+	margin-right:1%;
+	padding-left:1%;
+}
+
+#index_search
+{
+	margin-top:10%;
+	margin-left:20%;
+	margin-right:35%;
+}
+
+.border_style
+{
+	border: 2px solid #0471AF;
+}
+
+#trending
+{
+	color:red;
+	font-weight:bold;
+	margin-left:35%;
+	margin-top:12%;
 }
 
 /* ~~ These are the columns for the layout. ~~ 

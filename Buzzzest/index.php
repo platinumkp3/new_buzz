@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="./css/main.css" type="text/css"/>
+<link rel="stylesheet" href="./css/style.css" type="text/css"/>
 <script src="js/jquery-1.8.2.js" type="application/javascript" >
 </script>
 
@@ -31,20 +31,19 @@
 
 <body>
 
-	<div id="header" style="border-bottom:1px solid #000;">
-		Become a Buzzzest today! <a href="signup.php" >Sign Up</a> 
-		<div style="float:right;margin-right:1%;">
-			Alreday a Buzzzest <a href="" >Sign In</a>
+	<div class="header" id="header" style="border-bottom:1px solid #000;">
+		<div class="content_header">
+			Become a Buzzzest today! <a href="signup.php" >Sign Up</a> 
+			<div style="float:right;margin-right:1%;">
+				Alreday a Buzzzest <a href="" >Sign In</a>
+			</div>
 		</div>
 	</div>
 
-	<div style="display:block;float:left;margin-left:35%;margin-top:3%;">
+	<div style="display:block;float:left;margin-left:35%;margin-top:10%;">
 		<!--<image src="./images/bee2.gif" width="150" height="" style="margin-left:8%;"/><br/>-->
 		<b style="font-size:45px;margin-left:8%;">Buzzzest</b><br/>
 		<b>Lets Buzz & Zest Your World.</b><br/>
-		<div id="index_search">
-			<input type="text" style="width:100%;"/>
-		</div>
 		
 	</div>
 	<div id="sign_in">
@@ -54,7 +53,7 @@
 					<td colspan="2">Username</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="text"  name="username" id="username" /></td>
+					<td colspan="2"><input type="text"  name="username" id="username" class="border_style"/></td>
 				</tr>
                 <tr>
 					<td colspan="2"><label id="uname" /></td>
@@ -62,7 +61,7 @@
 				<tr>
 					<td colspan="2">Password</td></tr>
 				<tr>
-					<td colspan="2"><input type="password" name="passwrd" id="passwrd" /></td>
+					<td colspan="2"><input type="password" name="passwrd" id="passwrd" class="border_style"/></td>
 				</tr>
                  <tr>
 					<td colspan="2"><label id="psswrd" /></td>
@@ -83,6 +82,15 @@
 				</tr>-->
 			</table>
 		</form>
+	</div>
+	<div id="index_search">
+		<input type="text" style="width:100%;" class="border_style"/>
+	</div>
+	
+	<div>
+		<div id="trending">
+			Top Buzz. Trending Topics
+		</div>
 	</div>
 </body>
 </html>
