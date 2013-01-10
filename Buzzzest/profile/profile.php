@@ -98,7 +98,7 @@ $friends_count=$data_sel_friends['CNT'];
    <div id="content_post_form" >
    <form name="frmuserpost" id="frmuserpost" action="" method="post" onSubmit="fnUpdatePost(); return false">
       <div id="homemenu">
-        <textarea name="txtuserpost" id="txtuserpost"  rows="2" cols="60" ></textarea>
+        <textarea name="txtuserpost" id="txtuserpost"  rows="2" cols="55" style="width:98%;"></textarea>
         <input type="submit" name="Post" value="Post" />    
       </div>
    </form>
