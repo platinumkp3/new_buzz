@@ -108,7 +108,7 @@ function fill(thisValue) {
 <div style="width:100%" >
 Anything to share? 
 <form name="frmshare" method="post" >
-<textarea name="share" id="share" rows="3" cols="60"  autofocus="autofocus" ></textarea>
+<textarea name="share" id="share" rows="3" cols=""  autofocus="autofocus" style="width:98%;"></textarea>
 </form>
 </div>	
 <div>
