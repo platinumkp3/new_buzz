@@ -20,13 +20,14 @@ require "../includes/header.php";
    <div id="divborder">
    <a href="#" onclick="fnchangedivmsg('inbox')"; >Inbox</a>&nbsp;&nbsp;
    <a href="#" onclick="fnchangedivmsg('outbox')"; >Outbox</a>&nbsp;&nbsp;
+   
    <a href="#" onclick="fnchangedivmsg('createmsg')"; >Create Message</a>&nbsp;&nbsp;
-   <a href="#" onclick="fnchangedivmsg('trash')"; >Trash</a>
+ <!--  <a href="#" onclick="fnchangedivmsg('trash')"; >Trash</a>-->
    </div>   
  <div id="divborder" >
- 	&nbsp;&nbsp;
+ 	<!--&nbsp;&nbsp;
  	<a href="">Report spam</a>&nbsp;&nbsp;
-   	<a href="">Delete</a></div>
+   	<a href="">Delete</a>--></div>
  <div id="inbox">
   
  </div>
