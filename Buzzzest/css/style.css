@@ -19,19 +19,20 @@ h1, h2, h3, h4, h5, h6, p {
 }
 a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
 	border: none;
+	text-decoration:none;
 }
 
 /* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
 a:link {
-	color:#414958;
-	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+	color:#045C8E;
+	text-decoration: none; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
 }
 a:visited {
-	color: #4E5869;
+	color: #045C8E;
 	text-decoration: underline;
 }
 a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 /* ~~ this container surrounds all other divs giving them their percentage-based width ~~ */
@@ -157,7 +158,8 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
 /* ~~ The footer ~~ */
 .footer {
 	padding: 10px 0;
-	background-color: #6F7D94;
+	background-color: #045C8E;
+	color:#FFFFFF;
 	position: relative;/* this gives IE6 hasLayout to properly clear */
 	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
 }

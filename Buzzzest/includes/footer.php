@@ -1,6 +1,6 @@
 
   <div class="footer">
-    <p align="center">&copy; Buzzzest 2012</p>
+    <p align="center">&copy; Buzzzest 2013</p>
     <!-- end .footer --></div>
   <!-- end .container --></div>
 </body>

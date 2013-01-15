@@ -41,7 +41,6 @@ $(document).ready(function() {
   <a href="../qandans/QandAns.php" >Q & A</a>&nbsp;&nbsp;  
    <a href="../blog/blog.php" >Blog</a>&nbsp;&nbsp; <a href="../message/message.php" >Messages</a>&nbsp;&nbsp;
     <a href="../job/job.php" >Job</a> &nbsp;&nbsp;  
-   <a href="../logout.php">Logout</a>  &nbsp;&nbsp;  
   
    <?php 
    include "../db/common_db.php";
@@ -52,8 +51,21 @@ $(document).ready(function() {
    $num_select_request=mysql_num_rows($res_select_request);
    if ($num_select_request > 0)
    { ?>
-		<a  class="fancybox fancybox.ajax" href="../home/friend_request.php?uid=<?php echo $uid_val;?>" ><strong><?php echo $num_select_request;?></strong> Friend Request(s) Pending </a>    
-   <?php } ?>
+		<a  class="fancybox fancybox.ajax" href="../home/friend_request.php?uid=<?php echo $uid_val;?>" ><strong><?php echo $num_select_request;?></strong> Friend Request(s) Pending </a> &nbsp;&nbsp;     
+   <?php } 
+      
+   $select_mesg="select * from message where TOMSGID='".$uid_val."' and MSGSTATUS='0'";
+   $res_select_mesg=mysql_query($select_mesg,$linkid);
+   $num_select_mesg=mysql_num_rows($res_select_mesg);
+   if ($num_select_mesg > 0)
+   { ?>
+		<a href="../message/message.php" ><strong><?php echo $num_select_mesg;?></strong> Message(s) </a>  &nbsp;&nbsp;    
+   <?php
+    }
+   ?>
+   
+    
+   <a href="../logout.php">Logout</a>  &nbsp;&nbsp; 
         <div style="float:right;"><?php echo $_SESSION['UNAME']; ?></div>
     <!-- end .header --></div></div>
     <div class="container" >
