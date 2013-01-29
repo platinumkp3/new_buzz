@@ -22,7 +22,7 @@ require "../includes/header.php";
    <a href="#" onclick="fnchangedivmsg('outbox')"; >Outbox</a>&nbsp;&nbsp;
    
    <a href="#" onclick="fnchangedivmsg('createmsg')"; >Create Message</a>&nbsp;&nbsp;
- <!--  <a href="#" onclick="fnchangedivmsg('trash')"; >Trash</a>-->
+<!--  <a href="#" onclick="fnchangedivmsg('trash')"; >Trash</a>-->
    </div>   
  <div id="divborder" >
  	<!--&nbsp;&nbsp;
