@@ -54,7 +54,7 @@ $friends_count=$data_sel_friends['CNT'];
 <script type="text/javascript" src="../js/upload.js"></script>
 
    <div class="sidebar1">
-   <div  >
+   <div >
    <table width="100%" height="100%" cellpadding="0" cellspacing="0" id="tableborder" >
 	
     <tr>

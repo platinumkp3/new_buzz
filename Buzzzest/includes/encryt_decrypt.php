@@ -13,7 +13,7 @@ function encrypt_val($string)
 function decrypt_val($encrypted_val)
 {
 	global $key;
-	$decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($encrypted_val), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
+	$decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($encrypted_val), MCRYPT_MODE_CBC, md5(md5($key))));
 	
 	return $decrypted;
 

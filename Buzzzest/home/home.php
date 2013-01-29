@@ -122,7 +122,7 @@ Anything to share?
 </div>
 
 <div id="list">
-list
+
 </div>
 
 <div id="friends">

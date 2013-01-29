@@ -15,14 +15,29 @@ $(document).ready(function() {
  
 function fnchangehomediv(stringval) 
 {
-   $('#list').hide("");	
-   $('#friends').hide("");	
-   $('#following').hide("");
-   $('#content_post_home').hide("");
+   $('#list').hide();	
+   $('#friends').hide();	
+   $('#following').hide();
+   $('#content_post_home').hide();
+   $("#friends").hide();
+   $("frndlist").hide();
    $("#content_post_home").css("display","none");
    $("#list").css("display","none");
    $("#friends").css("display","none");
+   $("frndlist").css("display","none");
    $("#following").css("display","none"); 
+   
+   if ( stringval == "friends" )
+   {
+	   $("#friends").css("display","block");
+	   $("#frndlist").css("display","block");
+   }
+   
+   if ( stringval == "list" )
+   {
+	    $("#list").css("display","block");
+		$("#list").load("user_friendlist.php");
+   }
    $('#'+stringval).css("display","block");	
 }
 
