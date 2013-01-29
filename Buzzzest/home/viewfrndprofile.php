@@ -75,7 +75,7 @@ $friends_count=$data_sel_friends['CNT'];
             	<tr><td width="21%">Username </td><td width="79%"><?php echo $uname; ?></td></tr>
                 <tr><td>Name </td><td><?php echo $UFULLNAME; ?></td></tr>
                 <?php if ($UGENDER_val != "") { ?>
-                	<tr><td>Gender </td><td><?php echo $ugender_val; ?> </td></tr>
+                	<tr><td>Gender </td><td><?php echo $UGENDER_val; ?> </td></tr>
                 <?php } if ($UOCCUPATION != "") {?>
                 <tr><td>Occupation </td><td><?php echo $UOCCUPATION; ?></td></tr>
                 <?php } if ($UINDUSTRY != "") {?>
