@@ -7,7 +7,7 @@ include "../db/common_db.php";
 include "../includes/encryt_decrypt.php";
 $linkid=db_connect();
 
-$select_frnd="select usr.UID as UID,usr.UNAME as UNAME,usr.UPHOTO as UPHOTO from friends as frnd inner join users as usr on usr.UID = frnd.FRIENDID  where frnd.UID='".$uid."'";
+$select_frnd="select usr.UID as UID,usr.UNAME as UNAME,usr.UPHOTO as UPHOTO from friends as frnd inner join users as usr on usr.UID = frnd.FRIENDID  where frnd.UID='".$uid."' and frnd.FSTATUS='1'";
 $res_frnd = mysql_query($select_frnd,$linkid);
 $num_frnd = mysql_num_rows($res_frnd);
 ?>

@@ -7,12 +7,7 @@ require "../includes/header.php";
 include "../includes/check_session.php";
 //include "../db/common_db.php";
 include "../includes/encryt_decrypt.php";
-require "../includes/phpfunctions.php";
 //$linkid=db_connect();
-?>
-<script src="../js/home.js" type="application/javascript" >
-</script>
-<?php
 
 $userencid=$_GET['usd'];
 $uid = $userencid;
@@ -66,20 +61,15 @@ $data_sel_updates=mysql_fetch_array($res_sel_updates);
 $update_count=$data_sel_updates['CNT'];
 
 
-//$sel_friends="select * from friends where UID='".$uid."' and FSTATUS='1'";
-$sel_friends="select usr.UID as UID,usr.UNAME as UNAME,usr.UPHOTO as UPHOTO from friends as frnd inner join users as usr on usr.UID = frnd.FRIENDID  where frnd.UID='".$uid."' and frnd.FSTATUS='1'";
+$sel_friends="select count(*) as CNT from friends where UID='".$uid."' and FSTATUS='1'";
 $res_sel_friends=mysql_query($sel_friends,$linkid);
-$num_sel_friends = mysql_num_rows($res_sel_friends);
-$friends_count=$num_sel_friends;
+$data_sel_friends=mysql_fetch_array($res_sel_friends);
+$friends_count=$data_sel_friends['CNT'];
 ?>
 <div class="content">
-<a  href="#" onclick="fnchangefrnddiv('frndinfo')">Information</a>&nbsp;&nbsp;
-<a  href="#" onclick="fnchangefrnddiv('frndupdates')">Updates</a>&nbsp;&nbsp;
-<a  href="#" onclick="fnchangefrnddiv('frndlist')" >Friends</a>
-
-<div id="frndinfo">
 <table width="90%" height="90%" cellpadding="0" cellspacing="0" align="left" border="1" >
-   	<tr>
+   
+	<tr>
         <td width="100%">
         	<table width="90%" height="100%" cellpadding="0" cellspacing="0" align="left" >
             	<tr><td width="21%">Username </td><td width="79%"><?php echo $uname; ?></td></tr>
@@ -114,178 +104,6 @@ $friends_count=$num_sel_friends;
       	</table>     
      </td></tr>	
 </table>
-</div>
-
-<div id="frndupdates">
-<?php
-$select="select POSTID,POST,UID,POSTDATE,POSTTIME from post where UID='".$uid."' and PSTATUS=1 order by POSTID DESC";
-$res_select=mysql_query($select,$linkid);
-$num_select=mysql_num_rows($res_select);
-if ($num_select > 0)
-{
-$num_count=1;
-	
-	while ( $data_select = mysql_fetch_array($res_select) )
-	{
-		$post=$data_select['POST'];
-		$postid=$data_select['POSTID'];
-		$POSTDATE=$data_select['POSTDATE'];
-		$POSTTIME=$data_select['POSTTIME'];
-		$post_time=explode(" ",$POSTTIME);
-		$posttimeval=$post_time[1];
-		$user_select="select UPHOTO from users where UID='".$uid."'";
-		$res_userselect=mysql_query($user_select,$linkid);
-		$data_userselect=mysql_fetch_array($res_userselect);
-		$uphoto=$data_userselect['UPHOTO'];
-		if ($uphoto != "")
-		{
-			$userphoto=$uphoto;
-		}
-		else
-		{
-			$userphoto="../images/humanicon.jpg";			
-		}
-		
-			//code for shares
-		$select_shared="select * from share where POSTID='".$postid."'";
-		$res_select_shared=mysql_query($select_shared,$linkid);
-		$num_select_shared=mysql_num_rows($res_select_shared);
-		
-		// end of shares
-		
-		// code for likes
-		$select_liked="select * from likes where POSTID='".$postid."'";
-		$res_select_liked=mysql_query($select_liked,$linkid);
-		$num_select_liked=mysql_num_rows($res_select_liked);
-	
-		//end of likes
-		
-		$timezone = "Asia/Calcutta";
-		if(function_exists('date_default_timezone_set')) date_default_timezone_set($timezone);
-		$curtime=date('Y-m-d H:i:s');
-		
-		$post_timeval =date_diffval($POSTTIME, $curtime);
-
-	?>
-     
-         <table width="100%" align="left" height="100%" cellpadding="0" cellspacing="0" id="tableborder" >
-	<tr>
-      <td width="15%">&nbsp;</td>
-      <td width="85%"><b><?php echo $uname;?></b></td><td width="2%"></td>
-    </tr>
-    <tr>
-    <td valign="top"><img src="<?php echo $userphoto;?>"  width="60" height="60"  /></td><td colspan="2">
-	<?php echo $post;?>
-
-    </tr>
-    <?php
-    //code for comments
-		$sel_com="Select * from comments where POSTID='".$postid."' order by CMTID asc ";
-		$res_sel_com=mysql_query($sel_com,$linkid);
-		$num_rows_compost=mysql_num_rows($res_sel_com);	
-		
-		if($num_rows_compost > 0)
-		{	
-			$num_com_count=1;
-			while( $data_sel_com=mysql_fetch_array($res_sel_com))
-			{
-				$comid=$data_sel_com['CMTID'];
-				$comuid=$data_sel_com['UID'];
-				$ctext=$data_sel_com['CTEXT'];
-				$ctime=$data_sel_com['CTIME'];
-				
-				$select_comuser="select UPHOTO,UNAME from users where UID='".$comuid."'";
-				$res_comuser=mysql_query($select_comuser,$linkid);
-				$data_comuser=mysql_fetch_array($res_comuser);
-				$comuphoto=$data_comuser['UPHOTO'];
-				$cuname=$data_comuser['UNAME'];
-				if ($comuphoto != "")
-				{
-					$comuserphoto=$comuphoto;
-				}
-				else
-				{
-					$comuserphoto="../images/humanicon.jpg";			
-				}
-		?>
-			<tr>
-				<td>&nbsp;</td>
-				<td>
-				<table width="100%" height="100%" cellpadding="0" cellspacing="0" >
-					<tr>
-					  <td width="13%"><input type="hidden" name="totalcom" id="totalcom" value="<?php echo $num_rows_compost; ?>" /></td><td width="87%"><b><?php echo $cuname;?></b></td>
-                      
-					</tr>
-					<tr>
-						<td valign="top"><img src="<?php echo $comuserphoto;?>"  width="40" height="40"  /></td>
-                        <td colspan="2">
-                        <?php echo $ctext;?>
-                      	                         
-                    </td>
-					</tr>
-				</table>
-				</td>
-			</tr>
-		<?php
-			$num_com_count++;
-			}
-		?>
-		<tr>
-			<td>&nbsp;</td>
-			<td colspan="2"><?php echo $post_timeval; ?> 
-		</td>
-			</tr>
-			<tr>   
-			
-		</tr>
-		<?php
-		} else 
-		{
-			?>
-			 <tr>
-			<td>&nbsp;</td><td colspan="2"><?php echo $post_timeval; ?></td>  </tr>
-			<?php
-			}
-		?>
-</table>
-<?php	
- $num_count++;
-	
-	}
-}
-?>
-
-</div>
-
-<div id="frndlist">
-<table  width="100%" height="100%" cellpadding="0" cellspacing="0" id="tableborder">
-<?php
-if ($num_sel_friends > 0)
-{
-	while ($data_frnd = mysql_fetch_array($res_sel_friends))
-	{
-		$frndname = $data_frnd['UNAME'];
-		$user_id = $data_frnd['UID'];
-		$uphoto = $data_frnd['UPHOTO'];
-		if ($uphoto != "")
-		{
-			$userphoto=$uphoto;
-		}
-		else
-		{
-			$userphoto="../images/humanicon.jpg";			
-		}
-		$userencryid = md5($user_id);
-		?>
-			<tr><td><a href="viewfrndprofile.php?usd=<?php echo $user_id;?>" target="_blank"><img src="<?php echo $userphoto;?>"  width="60" height="60"  /><br/><?php echo $frndname; ?></a></td></tr>
-		<?php
-	}
-} 
-?>
-</table>
-</div>
-
-
 </div>  
  <div class="sidebar1">
    <div >

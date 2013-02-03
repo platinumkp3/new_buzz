@@ -14,7 +14,7 @@ if(isset($_POST['queryString'])) {
 $queryString=$_POST['queryString'];	
 	if(strlen($queryString) >0) 
 	{
-		$query = "SELECT UNAME,UPHOTO FROM users WHERE UNAME LIKE '$queryString%' and UID!='".$uid."'";
+		$query = "SELECT UNAME,UPHOTO,UID FROM users WHERE UNAME LIKE '$queryString%' and UID!='".$uid."'";
 		$result_query=mysql_query($query,$linkid);
 		if($result_query) {
 		echo '<ul>';
@@ -23,6 +23,7 @@ $queryString=$_POST['queryString'];
 		{
 			$username=$data_query['UNAME'];
 			$uphoto=$data_query['UPHOTO'];
+			$user_id = $data_query['UID'];
 			if ($uphoto != "")
 			{
 				$userphoto=$uphoto;
@@ -32,7 +33,7 @@ $queryString=$_POST['queryString'];
 				$userphoto="../images/humanicon.jpg";
 			}
 			echo '<li style="list-style-type:none;" onClick="fill(\''.$username.'\');">
-			<table><tr><td><img src="'.$userphoto.'" width="60" height="60" /></td></tr>
+			<table><tr><td><a href="viewfrndprofile.php?usd='.$user_id.'" target="_blank"><img src="'.$userphoto.'" width="60" height="60" /></a></td></tr>
 			<tr><td>'.$username.'</td></tr></table></li>';
 			if ($count % 4 == 0)
 			{

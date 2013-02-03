@@ -4,6 +4,10 @@ $(document).ready(function() {
    $('#list').hide("");
    $("#list").css("display","none");
    
+    //$('#frndinfo').hide();	
+   	 $('#frndupdates').hide();	
+   	 $('#frndlist').hide();
+   
    $('#friends').hide("");
    $("#friends").css("display","none");
    
@@ -59,4 +63,20 @@ function fnsendFriendRequest()
 		  } //function to be called on successful reply from server
 		});
 	}
+}
+
+function fnchangefrnddiv(strfrnval)
+{
+	 $('#frndinfo').hide();	
+   	 $('#frndupdates').hide();	
+   	 $('#frndlist').hide();
+	 
+   	 $("#frndlist").css("display","none");
+   	 $("#frndupdates").css("display","none");
+   	 $("#frndinfo").css("display","none");
+	 
+	 
+	 
+	 $('#'+strfrnval).css("display","block");	
+   
 }
