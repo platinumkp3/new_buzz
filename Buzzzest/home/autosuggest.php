@@ -1,5 +1,7 @@
 ﻿<?php
 include "../db/common_db.php";
+include "../aes/AESEncryption.php";
+include "../aes/seckey.php";
 $linkid=db_connect();
 
 $uid=$_POST['uid'];
@@ -32,8 +34,12 @@ $queryString=$_POST['queryString'];
 			{
 				$userphoto="../images/humanicon.jpg";
 			}
+			
+			
+			$userencryid = AESEncryptCtr($user_id, $AES_SEC_KEY, 256);
+		
 			echo '<li style="list-style-type:none;" onClick="fill(\''.$username.'\');">
-			<table><tr><td><a href="viewfrndprofile.php?usd='.$user_id.'" target="_blank"><img src="'.$userphoto.'" width="60" height="60" /></a></td></tr>
+			<table><tr><td><a href="viewfrndprofile.php?usd='.$userencryid.'" target="_blank"><img src="'.$userphoto.'" width="60" height="60" /></a></td></tr>
 			<tr><td>'.$username.'</td></tr></table></li>';
 			if ($count % 4 == 0)
 			{
