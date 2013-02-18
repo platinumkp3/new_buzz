@@ -6,7 +6,7 @@ $uname=$_SESSION['UNAME'];
 require "../includes/header.php";
 include "../includes/check_session.php";
 //include "../db/common_db.php";
-include "../includes/encryt_decrypt.php";
+include "../aes/AESEncryption.php";
 require "../includes/phpfunctions.php";
 //$linkid=db_connect();
 ?>
@@ -15,7 +15,8 @@ require "../includes/phpfunctions.php";
 <?php
 
 $userencid=$_GET['usd'];
-$uid = $userencid;
+
+echo $uid = base64_decode($userencid);
 $select_photo="select * from users where UID='".$uid."'";
 $res_select_photo=mysql_query($select_photo,$linkid);
 $num_select_photo=mysql_num_rows($res_select_photo);
