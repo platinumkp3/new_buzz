@@ -6,7 +6,8 @@ $(document).ready(function() {
    
     //$('#frndinfo').hide();	
    	 $('#frndupdates').hide();	
-   	 $('#frndlist').hide();
+   	 $('#frndlist').hide();	
+   	 $('#frndphotos').hide();
    
    $('#friends').hide("");
    $("#friends").css("display","none");
@@ -42,6 +43,8 @@ function fnchangehomediv(stringval)
 	    $("#list").css("display","block");
 		$("#list").load("user_friendlist.php");
    }
+   
+   
    $('#'+stringval).css("display","block");	
 }
 
@@ -69,14 +72,15 @@ function fnchangefrnddiv(strfrnval)
 {
 	 $('#frndinfo').hide();	
    	 $('#frndupdates').hide();	
-   	 $('#frndlist').hide();
+   	 $('#frndlist').hide();	
+   	 $('#frndphotos').hide();
 	 
    	 $("#frndlist").css("display","none");
    	 $("#frndupdates").css("display","none");
-   	 $("#frndinfo").css("display","none");
+   	 $("#frndinfo").css("display","none");	 
+   	 $('#frndphotos').css("display","none");	 
 	 
-	 
-	 
+	
 	 $('#'+strfrnval).css("display","block");	
    
 }

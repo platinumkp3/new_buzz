@@ -19,8 +19,7 @@ function uploadimg(theform){
 function doneloading(rezultat) {
   // decode (urldecode) the parameter wich is encoded in PHP with 'urlencode'
   //rezultat = decodeURIComponent(rezultat.replace(/\+/g,  " "));
-	
-  
+	 
   // add the value of the parameter inside tag with 'id=showimg'
  // document.getElementById('showimg').innerHTML = rezultat;
 }

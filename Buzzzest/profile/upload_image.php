@@ -1,8 +1,11 @@
 <?php
 session_start();
 $uid=$_SESSION['UID'];
-// Script from http://coursesweb.net/ajax
 
+include "../db/common_db.php";
+$linkid=db_connect();
+
+// Script from http://coursesweb.net/ajax
 $savefolder = "../uploads/".$uid;		// folder for upload
 $max_size = 250;			// maxim size for image file, in KiloBytes
 
@@ -10,6 +13,10 @@ $max_size = 250;			// maxim size for image file, in KiloBytes
 $allowtype = array('bmp', 'gif', 'jpg', 'jpeg', 'gif', 'png');
 
 /** Uploading the image **/
+
+$timezone = "Asia/Calcutta";
+if(function_exists('date_default_timezone_set')) date_default_timezone_set($timezone);
+$curtime=date('Y-m-d H:i:s');
 
 $rezultat = '';
 // if is received a valid file
@@ -29,6 +36,9 @@ if (isset ($_FILES['myfile'])) {
         else {
           // Return the img tag with uploaded image.
           $rezultat = 1;
+		  $postdata = $_FILES['myfile']['name'];
+		   $insert ="insert into post(UID,POST,POSTDATE,POSTTIME,PSTATUS,PHOTOYN) values('".$uid."','".$postdata."','".date('Y-m-d')."','".$curtime."','1','1')";
+		  $result_insert=mysql_query($insert,$linkid);
           echo 'The image was successfully loaded';
         }
       }

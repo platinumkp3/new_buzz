@@ -147,6 +147,26 @@ insert into `comments` (`CMTID`,`UID`,`CDATE`,`CTIME`,`CSTATUS`,`CTEXT`,`POSTID`
 insert into `comments` (`CMTID`,`UID`,`CDATE`,`CTIME`,`CSTATUS`,`CTEXT`,`POSTID`) values (11,11,'2012-11-07','2012-11-07 16:19:35',1,'sdfsfdfgdfgd',6);
 insert into `comments` (`CMTID`,`UID`,`CDATE`,`CTIME`,`CSTATUS`,`CTEXT`,`POSTID`) values (12,11,'2012-11-07','2012-11-07 16:41:15',1,'jgjgkj',7);
 
+/*Table structure for table `following` */
+
+DROP TABLE IF EXISTS `following`;
+
+CREATE TABLE `following` (
+  `FOLLOWID` int(11) NOT NULL AUTO_INCREMENT,
+  `FOLLOWDATE` date DEFAULT NULL,
+  `FOLLOWTIME` datetime DEFAULT NULL,
+  `FOLLOWSTATUS` int(11) DEFAULT NULL,
+  `POSTID` int(11) DEFAULT NULL,
+  `UID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`FOLLOWID`),
+  KEY `FK_following` (`UID`),
+  KEY `FK1_following` (`POSTID`),
+  CONSTRAINT `FK1_following` FOREIGN KEY (`POSTID`) REFERENCES `post` (`POSTID`),
+  CONSTRAINT `FK_following` FOREIGN KEY (`UID`) REFERENCES `users` (`UID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `following` */
+
 /*Table structure for table `friends` */
 
 DROP TABLE IF EXISTS `friends`;
@@ -237,10 +257,10 @@ CREATE TABLE `message` (
 /*Data for the table `message` */
 
 insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (1,1,'hi testing','2013-01-14','2013-01-14 19:00:00',11,0);
-insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (2,1,'hi testing','2013-01-14','2013-01-14 19:00:00',12,1);
+insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (2,1,'hi testing','2013-01-14','2013-01-14 19:00:00',12,0);
 insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (3,1,'hi testing','2013-01-14','2013-01-14 19:00:00',10,0);
-insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (4,9,'hi testing','2013-01-14','2013-01-14 19:00:00',1,1);
-insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (5,12,'testing','2013-01-14','2013-01-14 19:01:20',1,1);
+insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (4,9,'hi testing','2013-01-14','2013-01-14 19:00:00',1,0);
+insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (5,12,'testing','2013-01-14','2013-01-14 19:01:20',1,0);
 insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (6,1,'skdhf ','2013-01-14','2013-01-14 20:44:13',12,0);
 insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (7,12,' dfgdgfdfg','2013-01-14','2013-01-14 20:46:00',1,1);
 insert into `message` (`MSGID`,`UID`,`MSG`,`MSGDATE`,`MSGTIME`,`TOMSGID`,`MSGSTATUS`) values (8,12,'wewerwerwerrwe ','2013-01-14','2013-01-14 20:46:13',1,0);

@@ -3,20 +3,61 @@ session_start();
 $uid=$_SESSION['UID'];
 $uname=$_SESSION['UNAME'];
 
-require "../includes/header.php";
+require "../includes/frnds_viewheader.php";
 include "../includes/check_session.php";
 //include "../db/common_db.php";
 include "../aes/AESEncryption.php";
 require "../includes/phpfunctions.php";
+include "../aes/seckey.php";
 //$linkid=db_connect();
 ?>
 <script src="../js/home.js" type="application/javascript" >
 </script>
+
+<!-- stylesheet for light box for photos in profile.page -->
+<link rel="stylesheet" type="text/css" href="../css/lightbox/jquery.lightbox-0.5.css" />
+<!-- end of stylesheet -->    
+
+<!-- script for light box for photos in profile.page 
+<script type="text/javascript" src="js/lightbox/jquery.js"></script>-->
+<script type="text/javascript" src="../js/lightbox/jquery.lightbox-0.5.js"></script>
+<!-- end of scripts -->  
+
+<script type="text/javascript">
+
+    $(function() {
+        $('#gallery a').lightBox();
+    });
+</script>
+
+<style type="text/css" >
+
+	/* jQuery lightBox plugin - Gallery style */
+	#gallery {
+		width: 600px;
+	}
+	#gallery ul { list-style: none; }
+	#gallery ul li { display: inline; }
+	#gallery ul img {
+		border: 5px solid #3e3e3e;
+		border-width: 5px 5px 20px;
+	}
+	#gallery ul a:hover img {
+		border: 5px solid #fff;
+		border-width: 5px 5px 20px;
+		color: #fff;
+	}
+	#gallery ul a:hover { 
+		color: #fff; 
+	}
+	</style>
 <?php
 
 $userencid=$_GET['usd'];
+//$uid = base64_decode($userencid);
 
-echo $uid = base64_decode($userencid);
+$uid = AESDecryptCtr($userencid , $AES_SEC_KEY, 256);
+
 $select_photo="select * from users where UID='".$uid."'";
 $res_select_photo=mysql_query($select_photo,$linkid);
 $num_select_photo=mysql_num_rows($res_select_photo);
@@ -76,7 +117,8 @@ $friends_count=$num_sel_friends;
 <div class="content">
 <a  href="#" onclick="fnchangefrnddiv('frndinfo')">Information</a>&nbsp;&nbsp;
 <a  href="#" onclick="fnchangefrnddiv('frndupdates')">Updates</a>&nbsp;&nbsp;
-<a  href="#" onclick="fnchangefrnddiv('frndlist')" >Friends</a>
+<a  href="#" onclick="fnchangefrnddiv('frndlist')" >Friends</a>&nbsp;&nbsp;
+<a  href="#" onclick="fnchangefrnddiv('frndphotos')" >Photos</a>
 
 <div id="frndinfo">
 <table width="90%" height="90%" cellpadding="0" cellspacing="0" align="left" border="1" >
@@ -107,7 +149,7 @@ $friends_count=$num_sel_friends;
         <?php } if($UWEBSITE != "" ) { ?>	
 			<tr><td width="17%" height="24">Website</td>
             <td width="83%"><?php echo $UWEBSITE; ?></td></tr>
-        <?php } if($UEMAILID != "" ) { ?>
+        <?php } if($UEMAILID != "" ) { ?>  
         <tr>
             <td width="17%" height="24">Email</td>
             <td width="83%"><?php echo $UEMAILID; ?></td></tr>
@@ -276,9 +318,9 @@ if ($num_sel_friends > 0)
 		{
 			$userphoto="../images/humanicon.jpg";			
 		}
-		$userencryid = md5($user_id);
+		$userencryid = AESEncryptCtr($user_id, $AES_SEC_KEY, 256);
 		?>
-			<tr><td><a href="viewfrndprofile.php?usd=<?php echo $user_id;?>" target="_blank"><img src="<?php echo $userphoto;?>"  width="60" height="60"  /><br/><?php echo $frndname; ?></a></td></tr>
+			<tr><td><a href="viewfrndprofile.php?usd=<?php echo $userencryid;?>" target="_blank"><img src="<?php echo $userphoto;?>"  width="60" height="60"  /><br/><?php echo $frndname; ?></a></td></tr>
 		<?php
 	}
 } 
@@ -286,6 +328,29 @@ if ($num_sel_friends > 0)
 </table>
 </div>
 
+<div id="frndphotos">
+<div id="gallery">
+
+<br/>
+<ul>
+  
+   <?php
+     $count=1;
+    foreach(glob("../uploads/".$uid."/*.{jpg,JPG,jpeg,JPEG,gif,GIF,png,PNG}", GLOB_BRACE) as $images)
+    { ?>
+      <li>
+        <a href="<? echo $images;?>" title="">
+            <img src="<? echo $images;?>" width="100" height="100" alt="" />
+        </a>
+     </li>
+    
+    <?php 
+    if($count%4==0)
+            echo "<ul>";
+        $count++; }?>
+</ul>
+</div>
+</div>
 
 </div>  
  <div class="sidebar1">

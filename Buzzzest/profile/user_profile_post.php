@@ -298,7 +298,7 @@ function fnupdatecommentcom(usid,comid,txtid,action,id,psid)
 
 <?php
 
-$select="select POSTID,POST,UID,POSTDATE,POSTTIME from post where UID='".$uid."' and PSTATUS=1 order by POSTID DESC limit 3";
+$select="select POSTID,POST,UID,POSTDATE,POSTTIME,PHOTOYN from post where UID='".$uid."' and PSTATUS=1 order by POSTID DESC limit 3";
 //code for home page
 /*$select="select POSTID,POST,UID from post where UID in(select FRNID from friends 
 		where UID='".$uid."' ) or UID='".$uid."' and PSTATUS=1 order by POSTID desc";*/
@@ -321,7 +321,8 @@ if ($num_select > 0)
 		$postid=$data_select['POSTID'];
 		$POSTDATE=$data_select['POSTDATE'];
 		$POSTTIME=$data_select['POSTTIME'];
-		$post_time=explode(" ",$POSTTIME);
+		$PHOTOYN = $data_select['PHOTOYN'];
+		$post_time=explode(" ",$PHOTOYN);
 		$posttimeval=$post_time[1];
 		$user_select="select UPHOTO from users where UID='".$uid."'";
 		$res_userselect=mysql_query($user_select,$linkid);
@@ -363,6 +364,10 @@ if ($num_select > 0)
     <td width="15%"><input type="hidden" name="totalpost" id="totalpost" value="<?php echo $num_select; ?>" /></td><td width="85%"><b><?php echo $uname;?></b></td><td width="2%"><a href="#" onclick="fnshoweditdiv('editcomment_postcom<?php echo $num_count; ?>','<?php echo $num_count; ?>'); return false">Edit</a></td>
     </tr>
     <tr>
+    <?php
+		if ($PHOTOYN != 1)
+		{
+	?>
     <td valign="top"><img src="<?php echo $userphoto;?>"  width="60" height="60"  /></td><td colspan="2">
 	<div id="userpost<?php echo $num_count;?>"><?php echo $post;?></div>
      <div id="editcomment_postcom<?php echo $num_count; ?>">
@@ -374,8 +379,24 @@ if ($num_select > 0)
                 <input type="button" name="cancel" value="Cancel" width="88" height="20" 
                  onclick="fnupdatepost('<?php echo $uid; ?>','<?php echo $postid; ?>','txteditcompost<?php echo $num_count;?>','cancel','<?php echo $num_count;?>'); return false;"  />
 			</form>
-			</div>
+		</div>
     </td>
+    <?php
+		}
+		if ($PHOTOYN == 1)
+		{			
+	?>
+        <td valign="top"><img src="<?php echo $userphoto;?>"  width="60" height="60"  /></td><td colspan="2">
+	<div id="userpost<?php echo $num_count;?>">
+    <?php echo "Uploaded a new photo<br/><br/>"; ?>
+    <img src="<?php	 echo "../uploads/".$uid."/".$post;?>"  width="170" height="170"  />
+     <?php echo "<br/><br/>"; ?>
+    </div>
+   
+    </td>
+    <?php
+		}
+	?>
     </tr>
     <?php
     //code for comments

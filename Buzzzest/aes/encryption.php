@@ -3,6 +3,7 @@
 	require_once(dirname(__FILE__) . "/AESEncryption.php");
 	
 	include("seckey.php");
+<<<<<<< HEAD
 	$data = array("0110200521091972",
 "0101200201091966",
 "1811200218051978",
@@ -306,4 +307,16 @@ $time1 = strtotime("2008-12-13 10:42:00");
 $time2 = strtotime("2010-10-20 08:10:00");
 
 echo $diff = $time2-$time1;
+=======
+	$data="manjunath";
+	$sendData = AESEncryptCtr($data, $AES_SEC_KEY, 256);
+	echo "<br>Encrypted : " . $sendData;
+	
+	
+	$data = AESDecryptCtr($sendData , $AES_SEC_KEY, 256);
+	
+	echo "<br>Decrypt : " . $data;
+	
+	
+>>>>>>> 306049534e78fb09517af8f1bba1cfaecde652a6
 ?>

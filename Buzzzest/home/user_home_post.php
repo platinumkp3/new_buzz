@@ -155,7 +155,7 @@ function fnproflikehome(usrid_val,pst_id_val,str_value,action)
 
 <?php
 
-$select="select POSTID,POST,UID,POSTDATE,POSTTIME from post where UID in(select FRIENDID from friends where
+$select="select POSTID,POST,UID,POSTDATE,POSTTIME,PHOTOYN from post where UID in(select FRIENDID from friends where
  UID='".$uid."' and FSTATUS='1' ) order by POSTID desc ";
 
 $res_select=mysql_query($select,$linkid);
@@ -169,7 +169,8 @@ if ($num_select > 0)
 		$post=$data_select['POST'];
 		$postid=$data_select['POSTID'];
 		$POSTDATE=$data_select['POSTDATE'];
-		$POSTTIME=$data_select['POSTTIME'];
+		$POSTTIME=$data_select['POSTTIME'];		
+		$PHOTOYN = $data_select['PHOTOYN'];
 		$userid=$data_select['UID'];
 		
 		//code for shares
@@ -244,6 +245,8 @@ if ($num_select > 0)
 		$curtime=date('Y-m-d H:i:s');
 		
 		$post_timeval =date_diffval($POSTTIME, $curtime);
+		
+		
 
 	?>
          <table width="100%" height="100%" cellpadding="0" cellspacing="0" id="tableborder" >
@@ -251,7 +254,21 @@ if ($num_select > 0)
     <td width="14%"><input type="hidden" name="totalpost_home" id="totalpost_home" value="<?php echo $num_select; ?>" /></td><td width="78%"><b><?php echo $user_name;?></b></td><td width="8%"></td>
     </tr>
     <tr>
-    <td valign="top"><img src="<?php echo $userphoto;?>"  width="60" height="60"  /></td><td colspan="2"><?php echo $post;?></td>
+    <td valign="top"><img src="<?php echo $userphoto;?>"  width="60" height="60"  /></td>
+    <td colspan="2">
+	<?php 
+	if ($PHOTOYN != 1) 
+	{
+		echo $post;
+	}
+	
+	if ($PHOTOYN == 1) 
+	{
+		?>
+        <img src="<?php echo "../uploads/".$userid."/".$post;?>"  width="170" height="170"  />
+        <?php		
+	}
+	?></td>
     </tr>
     <?php
     //code for comments
